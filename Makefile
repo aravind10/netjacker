@@ -20,7 +20,7 @@ OBJ_PROG = Main.o
 OBJ_PROG_SRC = $(DIR_SRC)/Main.cpp
 
 MAKEFILE = Makefile
-LIB_LINK =
+LIB_LINK = -lcrafter
 
 $(PROGRAM):$(OBJ_PROG) $(OBJ_LIB) $(OBJ_PROTO)
 	$(CC) $(CC_FLAGS) $(OBJ_PROG) $(OBJ_LIB) $(OBJ_PROTO) $(LIB_LINK) -o $(PROGRAM)
