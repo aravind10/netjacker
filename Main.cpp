@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <cstring>
 #include <getopt.h>
 #include <crafter.h>
 
@@ -79,6 +80,8 @@ int main(int argc, char* argv[]) {
 	string router_ip; byte router_flag = 0;
 	/* Server port */
 	short_word server_port; byte server_port_flag = 0;
+	/* Error flag */
+	byte error = 0;
 
     /* Get the program name */
     string program_name = string(argv[0]);
@@ -145,7 +148,37 @@ int main(int argc, char* argv[]) {
 		  }
     }
 
-    if(!iface_flag || !listen_port || !client_flag || !server_flag || !router_flag || !server_port_flag)
+    if(!iface_flag) {
+    	cerr << "[@] Interface is missing. " << endl;
+    	error = 1;
+    }
+
+    if(!listen_port) {
+    	cerr << "[@] You should specify a port to listen. " << endl;
+    	error = 1;
+    }
+
+    if(!client_flag) {
+    	cerr << "[@] Client IP is missing " << endl;
+    	error = 1;
+    }
+
+    if(!router_flag) {
+    	cerr << "[+] WARNING: You didn't put a router IP address. If the server is not in your LAN this probably won't work. " << endl;
+    	router_ip = server_ip;
+    }
+
+    if(!server_flag) {
+    	cerr << "[@] Server IP is missing " << endl;
+    	error = 1;
+    }
+
+    if(!server_port_flag) {
+    	cerr << "[@] Server port is missing " << endl;
+    	error = 1;
+    }
+
+    if(error)
 		print_usage(cerr,program_name,1);
 
     InitCrafter();

@@ -3,17 +3,13 @@ DIR_SRC = ./
 DIR_BIN = ./
 DIR_LIB = ./
 
-TARBALL=project
+TARBALL=netjacket
 
 AR = ar
 AR_FLAGS = rs
 
 CC = g++
 CC_FLAGS = -g -O0 -Wall -I $(DIR_INCLUDE) -L $(DIR_LIB) 
-
-#OBJ_LIB = Class.o 
-#OBJ_LIB_HDR = $(DIR_FIELDS)/Class.h 
-#OBJ_LIB_SRC = $(DIR_FIELDS)/Class.cpp
 
 PROGRAM = $(DIR_BIN)/netjacker
 OBJ_PROG = Main.o
